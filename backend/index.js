@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import connectDB from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
+import logoutRoute from "./routes/logout.js";
+
 
 dotenv.config();
 const app = express();
@@ -18,6 +20,7 @@ connectDB();
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/logout", logoutRoute); // Add logout route
 
 // Default route
 app.get("/", (req, res) => {
