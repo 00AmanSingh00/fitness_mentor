@@ -6,13 +6,17 @@ import connectDB from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
 import logoutRoute from "./routes/logout.js";
 
-
 dotenv.config();
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URI || "http://localhost:3000", // Allow requests from frontend
+    credentials: true, // Allow cookies to be sent
+  })
+);
 app.use(cookieParser());
 
 // Connect to MongoDB
@@ -20,7 +24,7 @@ connectDB();
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/auth/logout", logoutRoute); // Add logout route
+app.use("/api/auth/logout", logoutRoute);
 
 // Default route
 app.get("/", (req, res) => {
