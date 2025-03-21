@@ -59,7 +59,7 @@ const Login = () => {
         </form>
         <p>{message}</p>
       </div>
-      <footer style={styles.footer}>© 2025 Fitness Mentor</footer>
+
     </div>
   );
 };

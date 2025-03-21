@@ -35,7 +35,7 @@ const Auth = ({ setIsAuthenticated }) => {
       <div style={styles.authBox}>
         <h2 style={styles.heading}>{isLogin ? "Login" : "Signup"}</h2>
         <form onSubmit={handleAuth} style={styles.form}>
-          <label style={styles.label}>Email:</label>
+          <label style={styles.label}>Email</label>
           <input
             type="email"
             placeholder="Enter your email"
@@ -44,7 +44,7 @@ const Auth = ({ setIsAuthenticated }) => {
             required
             style={styles.input}
           />
-          <label style={styles.label}>Password:</label>
+          <label style={styles.label}>Password</label>
           <input
             type="password"
             placeholder="Enter your password"
@@ -60,7 +60,7 @@ const Auth = ({ setIsAuthenticated }) => {
           {isLogin ? "Switch to Signup" : "Switch to Login"}
         </button>
       </div>
-      <footer style={styles.footer}>© 2025 Fitness Mentor</footer>
+      <footer style={styles.footer}></footer>
     </div>
   );
 };
@@ -73,15 +73,19 @@ const styles = {
     justifyContent: "center",
     height: "100vh",
     position: "relative",
+   
+    fontFamily: "Fraktur, cursive", // Font family set to Fraktur
   },
   authBox: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    background: "#f0f0f0",
+    background: "black", // Auth card background set to black
     padding: "40px",
     borderRadius: "10px",
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
+    boxShadow:"16px 8px 7px #292724",
+     textShadow: "2px 2px 4px #08fcd0",
+    color: "white", // Text color inside the auth card
   },
   heading: {
     fontSize: "27px",
@@ -106,12 +110,14 @@ const styles = {
     marginBottom: "15px",
     borderRadius: "5px",
     border: "1px solid #ccc",
+    backgroundColor: "#333", // Input background color
+    color: "white", // Input text color
   },
   button: {
     width: "270px",
     height: "45px",
     fontSize: "20px",
-    background: "#007BFF",
+    background: "#fcba03", 
     color: "#fff",
     border: "none",
     borderRadius: "5px",
@@ -123,12 +129,12 @@ const styles = {
     fontSize: "18px",
     background: "transparent",
     border: "none",
-    color: "#007BFF",
+    color: "grey",
     cursor: "pointer",
   },
   message: {
     fontSize: "16px",
-    color: "red",
+    color: "red", // Error message color remains red for visibility
     marginTop: "10px",
   },
   footer: {

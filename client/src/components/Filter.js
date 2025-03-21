@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Popover, Typography, Slider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Filter() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [age, setAge] = useState(25);
   const [weight, setWeight] = useState(60);
-  const [height, setHeight] = useState(5); // Default 5 feet
+  const [height, setHeight] = useState(5);
   const [bmi, setBmi] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(300);
@@ -14,6 +15,7 @@ function Filter() {
   const [currentSets, setCurrentSets] = useState(0);
   const [exerciseCompleted, setExerciseCompleted] = useState(false);
   const [alertShown, setAlertShown] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -30,9 +32,9 @@ function Filter() {
 
   // Helper function to determine BMI category
   const getBmiCategory = (bmi) => {
-    if (bmi < 18.5) return "underweight";
-    if (bmi >= 18.5 && bmi < 25) return "normal";
-    return "obese";
+    if (bmi < 18.5) return "Underweight";
+    if (bmi >= 18.5 && bmi < 25) return "Normal";
+    return "Obese";
   };
 
   // Reps & Sets Calculation
@@ -130,10 +132,10 @@ function Filter() {
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {timerActive && (
         <div>
-          <Typography variant="h6">
+          <Typography style={{color:"white"}}  variant="h6">
             Time Left: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, "0")}
           </Typography>
-          <Typography variant="h6">
+          <Typography style={{color:"white"}}  variant="h6">
             Set: {currentSets}/{avgSets} | Reps: {currentReps}/{avgReps}
           </Typography>
           <Button variant="contained" onClick={pauseTimer}>
@@ -154,7 +156,7 @@ function Filter() {
         aria-describedby={id}
         variant="contained"
         onClick={handleClick}
-        style={{ marginTop: "20px", backgroundColor: "#494a32", color: "#fff" }}
+        style={{ marginTop: "20px", backgroundColor: "#555e5e",width:"140px", color: "#fff" }}
       >
         Filter
       </Button>
@@ -169,7 +171,7 @@ function Filter() {
           horizontal: "left",
         }}
       >
-        <div style={{ padding: "20px", width: "250px", backgroundColor: "#c8cc68" }}>
+        <div style={{ padding: "20px",width: "250px", backgroundColor: "#f7b21e" }}>
           <Typography variant="subtitle1">Select Age</Typography>
           <Typography>Age: {age}</Typography>
           <Slider
@@ -178,7 +180,7 @@ function Filter() {
             value={age}
             onChange={(e, newValue) => setAge(newValue)}
             valueLabelDisplay="auto"
-            style={{ color: "#474740" }}
+            style={{ color: "#262525" }}
           />
 
           <Typography variant="subtitle1" style={{ marginTop: "15px" }}>
@@ -191,7 +193,7 @@ function Filter() {
             value={weight}
             onChange={(e, newValue) => setWeight(newValue)}
             valueLabelDisplay="auto"
-            style={{ color: "#474740" }}
+            style={{ color: "#262525" }}
           />
 
           <Typography variant="subtitle1" style={{ marginTop: "15px" }}>
@@ -205,7 +207,7 @@ function Filter() {
             value={height}
             onChange={(e, newValue) => setHeight(newValue)}
             valueLabelDisplay="auto"
-            style={{ color: "#474740" }}
+            style={{ color: "#262525" }}
           />
 
           <Typography variant="body1" style={{ marginTop: "10px", fontWeight: "bold" }}>
@@ -216,11 +218,15 @@ function Filter() {
             Final Workout: {avgSets} Sets of {avgReps} Reps
           </Typography>
 
-          <Button variant="contained" onClick={startTimer} style={{ marginTop: "15px", backgroundColor: "#474740", color: "#fff" }}>
+          <Button  variant="contained" onClick={startTimer} style={{ marginTop: "15px", backgroundColor: "#474740", color: "#fff" }}>
             Start 5 Min Timer
           </Button>
         </div>
       </Popover>
+
+      <Button variant="contained" color="primary" style={{ marginLeft:"10px",marginTop: "20px", backgroundColor: "#d99502",width:"140px" }} onClick={() => navigate("/bmi")}>
+      Check BMI
+      </Button>
     </div>
   );
 }

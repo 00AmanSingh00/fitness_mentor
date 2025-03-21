@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Auth from "./components/Auth";
+import BMI from "./pages/BMI"; // Added BMI page
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -31,7 +32,7 @@ const App = () => {
 
   return (
     <Box width="400px" sx={{ width: { xl: "1488px" } }} m="auto">
-     <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
 
       <Routes>
         {isAuthenticated === null ? (
@@ -40,6 +41,7 @@ const App = () => {
           <>
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
+            <Route path="/bmi" element={<BMI />} /> {/* Added BMI route */}
             <Route path="/auth" element={<Navigate to="/" />} />
           </>
         ) : (

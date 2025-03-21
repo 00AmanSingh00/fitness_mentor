@@ -41,7 +41,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   return (
     <Box id="exercises" sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-      <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="46px">Showing Results</Typography>
+      <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="46px" style={{ textShadow: "2px 2px 4px #08fcd0",
+    color: "white",}}>Showing Results</Typography>
       <Stack direction="row" sx={{ gap: { lg: '107px', xs: '50px' } }} flexWrap="wrap" justifyContent="center">
         {currentExercises.map((exercise, idx) => (
           <ExerciseCard key={idx} exercise={exercise} />
@@ -49,14 +50,14 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
       </Stack>
       <Stack sx={{ mt: { lg: '114px', xs: '70px' } }} alignItems="center">
         {exercises.length > 9 && (
-          <Pagination
-            color="standard"
+          <Pagination sx={{backgroundColor:'#cae6e8'}}
+  
             shape="rounded"
             defaultPage={1}
             count={Math.ceil(exercises.length / exercisesPerPage)}
             page={currentPage}
             onChange={paginate}
-            size="large"
+            size="medium"
           />
         )}
       </Stack>

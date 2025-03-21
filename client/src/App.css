@@ -4,7 +4,9 @@ html{
 
 body {
   font-family: "verdana";
-  background-color:#bcc0be ;
+  /* /black background */
+  background-color:#050505 ;
+  /* background-color:#bcc0be ; */
 }
 
 * {
