@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Auth from "./components/Auth";
-import BMI from "./pages/BMI"; // Added BMI page
+import BMI from "./pages/BMI";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -18,9 +18,10 @@ const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/auth/check-auth", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/auth/check-auth`,
+          { withCredentials: true }
+        );
         setIsAuthenticated(response.data.isAuthenticated);
       } catch (error) {
         setIsAuthenticated(false);
@@ -36,12 +37,12 @@ const App = () => {
 
       <Routes>
         {isAuthenticated === null ? (
-          <></> // Show nothing until authentication is determined
+          <></>
         ) : isAuthenticated ? (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
-            <Route path="/bmi" element={<BMI />} /> {/* Added BMI route */}
+            <Route path="/bmi" element={<BMI />} />
             <Route path="/auth" element={<Navigate to="/" />} />
           </>
         ) : (

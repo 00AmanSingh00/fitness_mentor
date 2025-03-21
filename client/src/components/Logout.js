@@ -20,7 +20,7 @@ const Logout = ({ setIsAuthenticated }) => {
 
       // Perform logout
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

@@ -9,7 +9,9 @@ const Signup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/signup', { email, password });
+            const response = await axios.post(
+              `${process.env.REACT_APP_BACKEND_URL}/api/signup`, 
+              { email, password })
             setMessage(response.data.message);
         } catch (error) {
             setMessage(error.response?.data?.message || 'Signup Failed');

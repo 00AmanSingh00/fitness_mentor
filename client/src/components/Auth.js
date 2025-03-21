@@ -12,9 +12,9 @@ const Auth = ({ setIsAuthenticated }) => {
   const handleAuth = async (e) => {
     e.preventDefault();
     const url = isLogin
-      ? "http://localhost:5000/api/auth/login"
-      : "http://localhost:5000/api/auth/signup";
-
+      ? `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`
+      : `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`;
+  
     try {
       const response = await axios.post(
         url,
@@ -23,14 +23,18 @@ const Auth = ({ setIsAuthenticated }) => {
       );
       console.log("Auth response:", response.data);
       setMessage(response.data.message);
-
+  
       if (isLogin && response.data.message === "Login successful") {
         setIsAuthenticated(true);
         navigate("/");
       }
     } catch (error) {
-      console.error("Auth error:", error.response?.data);
-      setMessage(error.response?.data?.message || "Authentication failed");
+      console.error("Auth error:", error);
+      setMessage(
+        error.response?.data?.message ||
+        error.message ||
+        "Authentication failed. Please check your network connection."
+      );
     }
   };
 
