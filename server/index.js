@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URI, "http://localhost:3000"], // Allow requests from frontend
+    origin: process.env.FRONTEND_URI, // Allow requests from frontend
     credentials: true, // Allow cookies to be sent
   })
 );
@@ -31,8 +31,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Fitness Mentor API!");
 });
 
-// Handle preflight requests
-app.options("*", cors());
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
