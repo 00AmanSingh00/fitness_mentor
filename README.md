@@ -1,1 +1,1 @@
- url :  (   https://fitness-mentor.vercel.app/exercise/0002   ) 
+ url :  (   https://fitness-mentor.vercel.app/   ) 
